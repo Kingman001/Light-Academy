@@ -1,0 +1,8 @@
+{
+  "name": "Lights Versity - School Management System",
+  "description": "A comprehensive school management platform for Lights Versity featuring online exams, automated fee payments, lecture timetables, and AI-powered performance insights.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
