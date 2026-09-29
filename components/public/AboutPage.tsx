@@ -11,7 +11,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+        <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-300">
           Secondary School Heritage Since 1984
         </span>
         <h1 className="text-4xl sm:text-5xl font-black font-serif text-slate-950 tracking-tight">
@@ -31,7 +31,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-8">
           <div className="text-white max-w-xl">
-            <p className="text-xs font-bold uppercase tracking-wider text-amber-300">The Memorial Assembly Quadrangle</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-amber-400">The Memorial Assembly Quadrangle</p>
             <h2 className="text-2xl font-bold font-serif">A Disciplined Sanctuary for Secondary School Learning</h2>
           </div>
         </div>
@@ -39,8 +39,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
 
       {/* Mission & Vision */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-slate-900 text-white p-8 sm:p-10 rounded-3xl space-y-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center font-serif font-black text-amber-300">
+        <div className="bg-slate-900 text-white p-8 sm:p-10 rounded-3xl space-y-4 border border-slate-800 shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center font-serif font-black text-amber-400">
             M
           </div>
           <h2 className="text-2xl font-bold font-serif tracking-tight">Our School Mission</h2>
@@ -49,8 +49,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
           </p>
         </div>
 
-        <div className="bg-indigo-950 text-white p-8 sm:p-10 rounded-3xl space-y-4">
-          <div className="w-10 h-10 rounded-xl bg-indigo-500/30 border border-indigo-400/40 flex items-center justify-center font-serif font-black text-indigo-300">
+        <div className="bg-slate-900 text-white p-8 sm:p-10 rounded-3xl space-y-4 border border-slate-800 shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center font-serif font-black text-amber-400">
             V
           </div>
           <h2 className="text-2xl font-bold font-serif tracking-tight">Our Vision for Pupils</h2>
@@ -63,14 +63,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
       {/* Core Secondary Values */}
       <div className="space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-1">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">Pillars of Character</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-amber-800">Pillars of Character</span>
           <h2 className="text-2xl font-bold font-serif text-slate-950">Core Values of the Academy</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {SCHOOL_INFO.values.map((v, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-2">
-              <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Tenable Pillar 0{i + 1}</span>
+            <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs space-y-2 hover:border-amber-400 transition-all">
+              <span className="text-xs font-bold text-amber-800 uppercase tracking-wider">Tenable Pillar 0{i + 1}</span>
               <h3 className="text-base font-bold text-slate-900 font-serif">{v.title}</h3>
               <p className="text-xs text-slate-600 leading-relaxed">{v.desc}</p>
             </div>
@@ -81,13 +81,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
       {/* Secondary School Leadership & House Masters */}
       <div className="space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-1">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">School Administration</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-amber-800">School Administration</span>
           <h2 className="text-2xl font-bold font-serif text-slate-950">Senior Leadership Team</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SCHOOL_INFO.leadership.map((leader, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+            <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 hover:border-amber-400 transition-all">
               <div className="w-16 h-16 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden">
                 <img
                   src={`https://images.unsplash.com/photo-${1534528741775 + i * 2000}?auto=format&fit=crop&w=200&q=80`}
@@ -97,7 +97,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
               </div>
               <div>
                 <h3 className="text-base font-bold text-slate-900 font-serif">{leader.name}</h3>
-                <p className="text-xs text-amber-700 font-medium">{leader.role}</p>
+                <p className="text-xs text-amber-800 font-semibold">{leader.role}</p>
               </div>
               <p className="text-xs text-slate-500 leading-relaxed">{leader.bio}</p>
             </div>
@@ -114,7 +114,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
           </div>
           <button
             onClick={onOpenApply}
-            className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold"
+            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl text-xs font-bold transition-all shadow-sm"
           >
             Apply for Admission
           </button>
@@ -138,3 +138,5 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenApply }) => {
     </div>
   );
 };
+
+export default AboutPage;

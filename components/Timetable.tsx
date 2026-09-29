@@ -31,7 +31,7 @@ const Timetable: React.FC = () => {
       endTime: newEvent.endTime,
       day: newEvent.day,
       room: newEvent.room,
-      color: 'bg-amber-50 text-amber-900 border-amber-200',
+      color: 'bg-amber-50 text-amber-900 border-amber-300',
       type: 'Workshop',
     };
     setEntries(prev => [...prev, created]);
@@ -66,7 +66,7 @@ const Timetable: React.FC = () => {
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-4 py-2 text-xs font-bold bg-indigo-600 text-white rounded-xl shadow-xs hover:bg-indigo-700 flex items-center gap-1.5"
+            className="px-4 py-2 text-xs font-bold bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl shadow-xs flex items-center gap-1.5 transition-all"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -94,7 +94,7 @@ const Timetable: React.FC = () => {
             onClick={() => setSelectedDay(day)}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               selectedDay === day
-                ? 'bg-indigo-600 text-white'
+                ? 'bg-amber-500 text-slate-950 font-bold'
                 : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
@@ -103,26 +103,26 @@ const Timetable: React.FC = () => {
         ))}
       </div>
 
-      {/* Lecture Details Modal */}
+      {/* Class Period Details Modal */}
       {selectedLecture && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl border border-slate-100 animate-in zoom-in-95">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
                   {selectedLecture.code || 'COURSE'}
                 </span>
                 <h3 className="text-base font-bold font-serif text-slate-900 mt-1">{selectedLecture.subject}</h3>
               </div>
-              <button onClick={() => setSelectedLecture(null)} className="text-slate-400 hover:text-slate-600">✕</button>
+              <button onClick={() => setSelectedLecture(null)} className="text-slate-400 hover:text-slate-600 text-sm font-bold">✕</button>
             </div>
 
             <div className="space-y-2 text-xs text-slate-600 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-              <p><strong>Lecturer / Instructor:</strong> {selectedLecture.teacher}</p>
+              <p><strong>Subject Teacher:</strong> {selectedLecture.teacher}</p>
               <p><strong>Scheduled Day:</strong> {selectedLecture.day}</p>
-              <p><strong>Time Window:</strong> {selectedLecture.startTime} – {selectedLecture.endTime}</p>
-              <p><strong>Location:</strong> {selectedLecture.room}</p>
-              <p><strong>Format:</strong> {selectedLecture.type || 'Lecture'}</p>
+              <p><strong>Period Window:</strong> {selectedLecture.startTime} – {selectedLecture.endTime}</p>
+              <p><strong>Classroom / Lab:</strong> {selectedLecture.room}</p>
+              <p><strong>Type:</strong> {selectedLecture.period || selectedLecture.type || 'Standard Period'}</p>
             </div>
 
             {selectedLecture.virtualLink ? (
@@ -130,34 +130,34 @@ const Timetable: React.FC = () => {
                 href={selectedLecture.virtualLink}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-colors"
               >
-                <span>Join Live Online Lecture Room</span>
+                <span>Join Virtual Classroom Session</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             ) : (
               <div className="text-center text-xs text-slate-400 italic">
-                In-person lecture. Please proceed to {selectedLecture.room}.
+                In-person period. Please proceed promptly to {selectedLecture.room}.
               </div>
             )}
           </div>
         </div>
       )}
 
-      {/* Add Study Slot Modal */}
+      {/* Add Prep Slot Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl border border-slate-100 animate-in zoom-in-95">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="font-bold text-sm text-slate-900 font-serif">Add Personal Study Block</h3>
-              <button onClick={() => setShowAddModal(false)} className="text-slate-400 hover:text-slate-600">✕</button>
+              <h3 className="font-bold text-sm text-slate-900 font-serif">Add Supervised Prep / Study Period</h3>
+              <button onClick={() => setShowAddModal(false)} className="text-slate-400 hover:text-slate-600 text-sm font-bold">✕</button>
             </div>
 
             <form onSubmit={handleAddEvent} className="space-y-3 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Study Focus / Course</label>
+                <label className="block font-bold text-slate-700 mb-1">Subject Focus</label>
                 <input
                   type="text"
                   required
@@ -179,7 +179,7 @@ const Timetable: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Study Location</label>
+                  <label className="block font-bold text-slate-700 mb-1">Study Pod / Room</label>
                   <input
                     type="text"
                     required
@@ -221,9 +221,9 @@ const Timetable: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold"
+                  className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold transition-all"
                 >
-                  Add to Schedule
+                  Save Study Slot
                 </button>
               </div>
             </form>
@@ -240,7 +240,7 @@ const Timetable: React.FC = () => {
                 Time
               </div>
               {DAYS.map(day => (
-                <div key={day} className="p-3.5 text-center font-bold text-slate-700 uppercase text-xs tracking-wider border-r border-slate-200 last:border-r-0">
+                <div key={day} className="p-3.5 text-center font-bold text-slate-800 uppercase text-xs tracking-wider border-r border-slate-200 last:border-r-0">
                   {day}
                 </div>
               ))}
@@ -264,10 +264,10 @@ const Timetable: React.FC = () => {
                             <div>
                               <div className="flex items-center justify-between mb-0.5">
                                 <span className="font-mono text-[9px] uppercase font-bold px-1 rounded bg-black/5">
-                                  {entry.code || 'COURSE'}
+                                  {entry.code || 'SEC'}
                                 </span>
                               </div>
-                              <p className="font-bold truncate text-[11px]">{entry.subject}</p>
+                              <p className="font-bold truncate text-[11px] text-slate-900">{entry.subject}</p>
                               <p className="opacity-75 text-[10px] truncate">{entry.room}</p>
                             </div>
                             <div className="pt-1 border-t border-black/5 flex items-center justify-between text-[10px]">
@@ -287,12 +287,12 @@ const Timetable: React.FC = () => {
           /* Single Day View */
           <div className="p-6 space-y-4">
             <h3 className="font-bold font-serif text-lg text-slate-900 border-b border-slate-100 pb-2">
-              Lectures on {selectedDay}
+              Class Periods on {selectedDay}
             </h3>
 
             {entries.filter(e => e.day === selectedDay).length === 0 ? (
               <div className="py-12 text-center text-slate-400 text-xs italic">
-                No scheduled academic sessions on {selectedDay}.
+                No scheduled class periods on {selectedDay}.
               </div>
             ) : (
               <div className="space-y-3">
@@ -300,14 +300,14 @@ const Timetable: React.FC = () => {
                   <div
                     key={item.id}
                     onClick={() => setSelectedLecture(item)}
-                    className="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 hover:border-indigo-300 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    className="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 hover:border-amber-400 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded font-mono">
+                        <span className="text-[10px] font-bold text-slate-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded font-mono">
                           {item.code || 'COURSE'}
                         </span>
-                        <span className="text-xs text-slate-500 font-medium">Instructor: {item.teacher}</span>
+                        <span className="text-xs text-slate-500 font-medium">Subject Teacher: {item.teacher}</span>
                       </div>
                       <h4 className="text-base font-bold text-slate-900">{item.subject}</h4>
                       <p className="text-xs text-slate-500">{item.room}</p>
@@ -316,8 +316,8 @@ const Timetable: React.FC = () => {
                     <div className="text-right flex-shrink-0">
                       <span className="text-sm font-bold text-slate-900 block font-mono">{item.startTime} – {item.endTime}</span>
                       {item.virtualLink && (
-                        <span className="text-xs text-indigo-600 font-bold hover:underline inline-block mt-1">
-                          Join Live Room →
+                        <span className="text-xs text-amber-700 font-bold hover:underline inline-block mt-1">
+                          Join Virtual Session →
                         </span>
                       )}
                     </div>

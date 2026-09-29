@@ -3,12 +3,11 @@ import { SCHOOL_INFO } from '../../constants';
 
 interface PublicFooterProps {
   setCurrentPublicPage: (page: string) => void;
-  onOpenAuth: (role: 'STUDENT' | 'STAFF') => void;
+  onOpenAuth?: (role: 'STUDENT' | 'STAFF') => void;
 }
 
 export const PublicFooter: React.FC<PublicFooterProps> = ({
   setCurrentPublicPage,
-  onOpenAuth
 }) => {
   const [emailSub, setEmailSub] = useState('');
   const [subSuccess, setSubSuccess] = useState(false);
@@ -37,7 +36,7 @@ export const PublicFooter: React.FC<PublicFooterProps> = ({
               {SCHOOL_INFO.name} Weekly School Gazette & Parent Circular
             </h4>
             <p className="text-xs text-slate-400">
-              Receive term calendars, Inter-House sports results, PTA meeting dates, and academic announcements.
+              Receive term calendars, Inter-House sports results, PTA meeting dates, and secondary academic announcements.
             </p>
           </div>
 
@@ -66,7 +65,7 @@ export const PublicFooter: React.FC<PublicFooterProps> = ({
           {/* Identity */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center font-serif font-black text-amber-400 text-lg">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 border border-amber-400/40 flex items-center justify-center font-serif font-black text-amber-400 text-lg">
                 LA
               </div>
               <div>
@@ -86,99 +85,97 @@ export const PublicFooter: React.FC<PublicFooterProps> = ({
             </div>
           </div>
 
-          {/* Academics */}
+          {/* Curricula */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">Curricula</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">Curricula & Forms</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => navigateTo('academics')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('academics')} className="hover:text-amber-300 transition-colors">
                   Junior Secondary (Grades 7–9)
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('academics')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('academics')} className="hover:text-amber-300 transition-colors">
                   Senior Science Track (Grades 10–12)
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('academics')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('academics')} className="hover:text-amber-300 transition-colors">
                   Senior Arts & Humanities Track
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('academics')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('academics')} className="hover:text-amber-300 transition-colors">
                   Senior Commercial / Business Track
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('academics')} className="hover:text-white transition-colors">
-                  Secondary Term Calendar 2026/27
+                <button onClick={() => navigateTo('academics')} className="hover:text-amber-300 transition-colors">
+                  Cambridge Secondary & National Exams
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Portals */}
+          {/* School Resources & Bursary (No portal login links - portals are in navbar) */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">School Portals</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">School Resources</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => onOpenAuth('STUDENT')} className="hover:text-white transition-colors font-medium flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                  Pupil Portal Login
+                <button onClick={() => navigateTo('admissions')} className="hover:text-amber-300 transition-colors">
+                  Term Fee Schedule & Bursary
                 </button>
               </li>
               <li>
-                <button onClick={() => onOpenAuth('STAFF')} className="hover:text-white transition-colors font-medium flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  Teacher & Staff Portal
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('admissions')} className="hover:text-white transition-colors">
-                  Term Fee Schedule
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('campus')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('campus')} className="hover:text-amber-300 transition-colors">
                   Boarding Dormitories & Matron
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('campus')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('campus')} className="hover:text-amber-300 transition-colors">
                   Science Laboratories
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigateTo('campus')} className="hover:text-amber-300 transition-colors">
+                  Turing Memorial Digital Library
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigateTo('admissions')} className="hover:text-amber-300 transition-colors">
+                  Merit Scholarships & Financial Aid
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* School Governance */}
+          {/* School Life & Houses */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">School Life</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">Secondary School Life</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => navigateTo('about')} className="hover:text-white transition-colors">
+                <button onClick={() => navigateTo('about')} className="hover:text-amber-300 transition-colors">
                   School Ethos & History
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('about')} className="hover:text-white transition-colors">
-                  Headmaster & Leadership
+                <button onClick={() => navigateTo('about')} className="hover:text-amber-300 transition-colors">
+                  Headmaster & Faculty Leadership
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('campus')} className="hover:text-white transition-colors">
-                  The Four Houses
+                <button onClick={() => navigateTo('campus')} className="hover:text-amber-300 transition-colors">
+                  The Four Secondary Houses
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('news')} className="hover:text-white transition-colors">
-                  Inter-House Sports & News
+                <button onClick={() => navigateTo('news')} className="hover:text-amber-300 transition-colors">
+                  Inter-House Sports & Drama
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('contact')} className="hover:text-white transition-colors">
-                  Contact & Parent Consultations
+                <button onClick={() => navigateTo('contact')} className="hover:text-amber-300 transition-colors">
+                  Parent-Teacher Consultations
                 </button>
               </li>
             </ul>
@@ -198,3 +195,5 @@ export const PublicFooter: React.FC<PublicFooterProps> = ({
     </footer>
   );
 };
+
+export default PublicFooter;

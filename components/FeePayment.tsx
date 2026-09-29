@@ -59,19 +59,19 @@ export const FeePayment: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold font-serif text-slate-900">
-            Student Tuition & Fee Payment Center
+            Pupil Term Fees & Bursary Center
           </h2>
           <p className="text-xs text-slate-500">
-            Automated bursary ledger, electronic payments, and verified receipts for semester examination clearance.
+            Automated secondary school bursary ledger, electronic payment gateway, and verified receipts for terminal examination clearance.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-xs text-slate-500 font-medium">Bursary Clearance:</span>
           <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
-            totalOutstanding === 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
+            totalOutstanding === 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-900 border border-amber-300'
           }`}>
-            {totalOutstanding === 0 ? '✓ Fully Cleared' : `Outstanding Balance: $${totalOutstanding}`}
+            {totalOutstanding === 0 ? '✓ Fully Cleared' : `Outstanding Balance: $${totalOutstanding}.00`}
           </span>
         </div>
       </div>
@@ -79,21 +79,21 @@ export const FeePayment: React.FC = () => {
       {/* Financial Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Outstanding Balance</span>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Outstanding Term Balance</span>
           <div className="text-3xl font-black font-serif text-rose-600 mt-1">${totalOutstanding}.00</div>
-          <p className="text-[11px] text-slate-500 mt-1">Due before midterm clearance</p>
+          <p className="text-[11px] text-slate-500 mt-1">Due before midterm examination week</p>
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Settled to Date</span>
-          <div className="text-3xl font-black font-serif text-emerald-600 mt-1">${totalPaid}.00</div>
-          <p className="text-[11px] text-slate-500 mt-1">Receipts registered in bursary system</p>
+          <div className="text-3xl font-black font-serif text-emerald-700 mt-1">${totalPaid}.00</div>
+          <p className="text-[11px] text-slate-500 mt-1">Receipts verified by bursary office</p>
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Scholarship Credit</span>
-          <div className="text-3xl font-black font-serif text-indigo-700 mt-1">$1,080.00</div>
-          <p className="text-[11px] text-indigo-600 font-semibold mt-1">Merit Academic Fellowship Applied</p>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Scholarship & Merit Credit</span>
+          <div className="text-3xl font-black font-serif text-slate-900 mt-1">$1,080.00</div>
+          <p className="text-[11px] text-amber-800 font-semibold mt-1">Secondary Academic Scholar Fellowship Applied</p>
         </div>
       </div>
 
@@ -108,14 +108,14 @@ export const FeePayment: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold font-serif text-slate-900">Official Payment Receipt Generated</h3>
-                <p className="text-xs text-slate-500">Transaction ID: <span className="font-mono text-indigo-600 font-bold">{paymentReceipt.receiptNumber}</span></p>
+                <h3 className="text-lg font-bold font-serif text-slate-900">Official Secondary Bursary Receipt</h3>
+                <p className="text-xs text-slate-500">Transaction ID: <span className="font-mono text-slate-900 font-bold">{paymentReceipt.receiptNumber}</span></p>
               </div>
             </div>
 
             <button
               onClick={() => setPaymentReceipt(null)}
-              className="text-xs text-slate-400 hover:text-slate-700 p-1"
+              className="text-xs text-slate-400 hover:text-slate-700 p-1 font-bold"
             >
               ✕ Close
             </button>
@@ -152,7 +152,7 @@ export const FeePayment: React.FC = () => {
             </button>
             <button
               onClick={() => setPaymentReceipt(null)}
-              className="px-5 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition-all"
+              className="px-5 py-2.5 bg-emerald-700 text-white rounded-xl text-xs font-bold hover:bg-emerald-800 transition-all"
             >
               Done
             </button>
@@ -166,9 +166,9 @@ export const FeePayment: React.FC = () => {
         <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <h3 className="text-base font-bold font-serif text-slate-900">
-              Semester Fee Invoices
+              Term 1 Fee Invoices & Levies
             </h3>
-            <span className="text-xs text-slate-400">Select an invoice to pay</span>
+            <span className="text-xs text-slate-400">Select an invoice to settle</span>
           </div>
 
           <div className="space-y-3">
@@ -182,7 +182,7 @@ export const FeePayment: React.FC = () => {
                   onClick={() => !isPaid && setSelectedFee(fee)}
                   className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 ${
                     isSelected && !isPaid
-                      ? 'border-indigo-600 bg-indigo-50/50 shadow-xs'
+                      ? 'border-amber-500 bg-amber-50/50 shadow-xs'
                       : isPaid
                       ? 'border-slate-100 bg-slate-50/60 opacity-80'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -193,7 +193,7 @@ export const FeePayment: React.FC = () => {
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                         fee.status === 'PAID' ? 'bg-emerald-100 text-emerald-800' :
                         fee.status === 'OVERDUE' ? 'bg-rose-100 text-rose-800' :
-                        'bg-amber-100 text-amber-800'
+                        'bg-amber-100 text-amber-900'
                       }`}>
                         {fee.status}
                       </span>
@@ -211,7 +211,7 @@ export const FeePayment: React.FC = () => {
                       {isPaid ? (
                         <span className="text-[11px] text-emerald-600 font-bold">Cleared</span>
                       ) : (
-                        <span className="text-[11px] text-indigo-600 font-bold hover:underline">
+                        <span className="text-[11px] text-amber-800 font-bold hover:underline">
                           {isSelected ? 'Selected' : 'Pay This →'}
                         </span>
                       )}
@@ -227,7 +227,7 @@ export const FeePayment: React.FC = () => {
         <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xs space-y-6">
           <div className="border-b border-slate-100 pb-3">
             <h3 className="text-base font-bold font-serif text-slate-900">
-              Checkout & Payment Gateway
+              Bursary Payment Gateway
             </h3>
             <p className="text-xs text-slate-500">Secure 256-bit SSL encrypted tuition portal</p>
           </div>
@@ -237,15 +237,15 @@ export const FeePayment: React.FC = () => {
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs space-y-1">
                 <span className="text-slate-400 block text-[10px] uppercase font-bold">Paying for:</span>
                 <p className="font-bold text-slate-800 text-sm">{selectedFee.description}</p>
-                <p className="text-xl font-black font-serif text-indigo-700 pt-1">${selectedFee.amount}.00</p>
+                <p className="text-xl font-black font-serif text-slate-900 pt-1">${selectedFee.amount}.00</p>
               </div>
 
               {/* Payment Methods */}
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { id: 'CARD', label: 'Credit Card' },
-                  { id: 'WIRE', label: 'Wire Transfer' },
-                  { id: 'SCHOLARSHIP', label: 'Aid Grant' },
+                  { id: 'WIRE', label: 'Bank Wire' },
+                  { id: 'SCHOLARSHIP', label: 'Scholarship' },
                 ].map((m) => (
                   <button
                     key={m.id}
@@ -265,7 +265,7 @@ export const FeePayment: React.FC = () => {
               {/* Card inputs */}
               <div className="space-y-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Cardholder Name</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Parent / Cardholder Name</label>
                   <input
                     type="text"
                     required
@@ -298,7 +298,7 @@ export const FeePayment: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">CVV Security Code</label>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">CVV Code</label>
                     <input
                       type="password"
                       required
@@ -314,12 +314,12 @@ export const FeePayment: React.FC = () => {
               <button
                 type="submit"
                 disabled={isPaying}
-                className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {isPaying ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    <span>Processing Payment with Bank Gateway...</span>
+                    <div className="w-4 h-4 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin"></div>
+                    <span>Processing Payment with Bursary Gateway...</span>
                   </>
                 ) : (
                   <>

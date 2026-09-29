@@ -116,7 +116,7 @@ export const StaffRoster: React.FC<StaffRosterProps> = ({ students, setStudents 
               })));
               showToast('Marked all Form 11A pupils present for morning assembly');
             }}
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all shadow-xs"
+            className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded-xl transition-all shadow-xs"
           >
             Mark All Present at Assembly
           </button>
@@ -212,7 +212,7 @@ export const StaffRoster: React.FC<StaffRosterProps> = ({ students, setStudents 
                       max="30"
                       value={student.continuousAssessment}
                       onChange={(e) => updateCA(student.id, parseInt(e.target.value) || 0)}
-                      className="w-12 px-2 py-1 bg-slate-50 border border-slate-200 rounded font-bold text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-600"
+                      className="w-12 px-2 py-1 bg-slate-50 border border-slate-200 rounded font-bold text-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-900"
                     />
                   </td>
                   <td className="p-4">
@@ -222,13 +222,13 @@ export const StaffRoster: React.FC<StaffRosterProps> = ({ students, setStudents 
                       max="70"
                       value={student.examScore}
                       onChange={(e) => updateExam(student.id, parseInt(e.target.value) || 0)}
-                      className="w-12 px-2 py-1 bg-slate-50 border border-slate-200 rounded font-bold text-slate-800 focus:outline-none focus:ring-1 focus:ring-indigo-600"
+                      className="w-12 px-2 py-1 bg-slate-50 border border-slate-200 rounded font-bold text-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-900"
                     />
                   </td>
                   <td className="p-4">
                     <span className={`font-black text-sm ${
                       student.totalScore >= 85 ? 'text-emerald-700' :
-                      student.totalScore >= 70 ? 'text-indigo-700' : 'text-slate-800'
+                      student.totalScore >= 70 ? 'text-slate-900' : 'text-slate-800'
                     }`}>
                       {student.totalScore}%
                     </span>

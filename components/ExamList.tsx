@@ -78,7 +78,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-slate-200 text-center space-y-6 animate-in zoom-in-95">
           <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto ${
-            passed ? 'bg-emerald-100 text-emerald-600' : 'bg-rose-100 text-rose-600'
+            passed ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
           }`}>
             {passed ? (
               <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,29 +92,29 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
           </div>
 
           <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Official Exam Result</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Secondary Assessment Result</span>
             <h2 className="text-3xl font-bold font-serif text-slate-900">{activeExam.title}</h2>
             <p className="text-xs text-slate-500">Subject: {activeExam.subject} · {activeExam.code}</p>
           </div>
 
           <div className="py-4 border-y border-slate-100 grid grid-cols-3 gap-4">
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-bold">Total Score</span>
-              <p className="text-2xl font-black font-serif text-indigo-700">{score} / {activeExam.totalMarks}</p>
+              <span className="text-slate-400 text-xs block font-medium">Final Score</span>
+              <span className="text-2xl font-black font-serif text-slate-900">{score}/{activeExam.totalMarks}</span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-bold">Percentage</span>
-              <p className="text-2xl font-black font-serif text-slate-900">{percentage}%</p>
+              <span className="text-slate-400 text-xs block font-medium">Percentage</span>
+              <span className={`text-2xl font-black font-serif ${passed ? 'text-emerald-700' : 'text-rose-600'}`}>{percentage}%</span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-bold">Grade Decision</span>
-              <p className={`text-2xl font-black font-serif ${passed ? 'text-emerald-600' : 'text-rose-600'}`}>
-                {passed ? (percentage >= 85 ? 'Grade A' : 'Passed') : 'Failed'}
-              </p>
+              <span className="text-slate-400 text-xs block font-medium">Academic Decision</span>
+              <span className={`text-base font-bold font-serif ${passed ? 'text-emerald-700' : 'text-rose-600'}`}>
+                {passed ? 'Passed (Credit)' : 'Resit Required'}
+              </span>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button 
               onClick={() => setShowReview(!showReview)}
               className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition-all"
@@ -123,15 +123,15 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
             </button>
             <button 
               onClick={() => window.print()}
-              className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-all"
+              className="px-5 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-800 rounded-xl font-bold text-xs transition-all"
             >
               Print Result Slip
             </button>
             <button 
               onClick={() => setActiveExam(null)}
-              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-xs transition-all"
+              className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-all shadow-xs"
             >
-              Back to Exam Portal
+              Back to Assessment Center
             </button>
           </div>
         </div>
@@ -163,7 +163,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
                       {q.options.map((opt, optIdx) => (
                         <div
                           key={optIdx}
-                          className={`p-2 rounded-lg border ${
+                          className={`p-2.5 rounded-xl border ${
                             optIdx === q.correctOption
                               ? 'bg-emerald-50 border-emerald-300 font-bold text-emerald-900'
                               : userAns === optIdx
@@ -171,7 +171,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
                               : 'bg-white border-slate-200 text-slate-600'
                           }`}
                         >
-                          <span className="font-mono mr-1.5">{String.fromCharCode(65 + optIdx)}.</span>
+                          <span className="font-mono mr-1.5 font-bold">{String.fromCharCode(65 + optIdx)}.</span>
                           {opt}
                           {optIdx === q.correctOption && ' (Correct Answer)'}
                           {userAns === optIdx && optIdx !== q.correctOption && ' (Your Choice)'}
@@ -180,8 +180,8 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
                     </div>
 
                     {q.explanation && (
-                      <p className="text-[11px] text-slate-500 bg-white p-2 rounded-lg border border-slate-100 mt-2">
-                        <strong className="text-slate-700">Explanation:</strong> {q.explanation}
+                      <p className="text-[11px] text-slate-500 bg-white p-2.5 rounded-xl border border-slate-100 mt-2">
+                        <strong className="text-slate-700">Teacher's Explanation:</strong> {q.explanation}
                       </p>
                     )}
                   </div>
@@ -205,8 +205,10 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
         {/* Sticky Header with Timer */}
         <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between sticky top-4 z-20">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600">{activeExam.code || 'EXAM'}</span>
-            <h3 className="text-base font-bold font-serif text-slate-900">{activeExam.title}</h3>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
+              {activeExam.code || 'EXAM'}
+            </span>
+            <h3 className="text-base font-bold font-serif text-slate-900 mt-1">{activeExam.title}</h3>
           </div>
 
           <div className="flex items-center gap-4">
@@ -221,7 +223,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
 
             <button
               onClick={submitExam}
-              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs transition-all shadow-xs"
+              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-all shadow-xs"
             >
               Finish & Submit
             </button>
@@ -231,11 +233,11 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
         {/* Question Area */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">
+            <span className="text-xs font-bold text-amber-900 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">
               Question {currentQuestionIndex + 1} of {totalQuestions}
             </span>
-            <span className="text-xs text-slate-400">
-              Answered: {answeredCount}/{totalQuestions}
+            <span className="text-xs text-slate-500 font-medium">
+              Completed: {answeredCount} / {totalQuestions}
             </span>
           </div>
 
@@ -253,12 +255,12 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
                     onClick={() => handleOptionSelect(index)}
                     className={`w-full p-4 rounded-2xl text-left text-xs font-medium border transition-all flex items-center gap-3 ${
                       isSelected
-                        ? 'border-indigo-600 bg-indigo-50/60 text-indigo-950 font-bold shadow-xs'
+                        ? 'border-amber-500 bg-amber-50/80 text-slate-950 font-bold shadow-xs'
                         : 'border-slate-200 hover:border-slate-300 text-slate-700 hover:bg-slate-50'
                     }`}
                   >
                     <span className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono font-bold ${
-                      isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600'
+                      isSelected ? 'bg-amber-500 text-slate-950' : 'bg-slate-100 text-slate-600'
                     }`}>
                       {String.fromCharCode(65 + index)}
                     </span>
@@ -279,7 +281,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
               ← Previous Question
             </button>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 flex-wrap">
               {activeExam.questions.map((_, i) => (
                 <button
                   key={i}
@@ -288,7 +290,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
                     currentQuestionIndex === i
                       ? 'bg-slate-900 text-white'
                       : answers[activeExam.questions[i].id] !== undefined
-                      ? 'bg-indigo-100 text-indigo-700'
+                      ? 'bg-amber-100 text-amber-900 border border-amber-300'
                       : 'bg-slate-100 text-slate-500'
                   }`}
                 >
@@ -307,7 +309,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
             ) : (
               <button
                 onClick={submitExam}
-                className="px-5 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shadow-xs"
+                className="px-5 py-2 bg-amber-500 text-slate-950 rounded-xl text-xs font-bold hover:bg-amber-600 shadow-xs"
               >
                 Submit Exam Now
               </button>
@@ -327,7 +329,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
             Secondary School Assessment Center
           </h2>
           <p className="text-xs text-slate-500">
-            Access timed continuous assessments, subject quizzes, and terminal examinations.
+            Access timed continuous assessments, weekly subject quizzes, and terminal examinations.
           </p>
         </div>
 
@@ -341,31 +343,31 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
         {exams.map((exam) => (
           <div
             key={exam.id}
-            className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4 hover:border-indigo-300 transition-all group"
+            className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:border-amber-400 hover:shadow-md transition-all group"
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
                   {exam.code || 'EXAM'}
                 </span>
-                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                   {exam.status || 'ACTIVE'}
                 </span>
               </div>
 
               <div>
-                <h3 className="text-base font-bold font-serif text-slate-900 group-hover:text-indigo-600 transition-colors">
+                <h3 className="text-base font-bold font-serif text-slate-900 group-hover:text-amber-800 transition-colors">
                   {exam.title}
                 </h3>
                 <p className="text-xs text-slate-500">{exam.subject}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-2 text-xs text-slate-600 pt-1">
-                <div className="p-2.5 bg-slate-50 rounded-xl">
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                   <span className="text-slate-400 block text-[10px]">Duration</span>
                   <span className="font-bold text-slate-800">{exam.duration} Minutes</span>
                 </div>
-                <div className="p-2.5 bg-slate-50 rounded-xl">
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                   <span className="text-slate-400 block text-[10px]">Total Marks</span>
                   <span className="font-bold text-slate-800">{exam.totalMarks} Points</span>
                 </div>
@@ -376,7 +378,7 @@ export const ExamList: React.FC<ExamListProps> = ({ exams = MOCK_EXAMS }) => {
               <span className="text-xs text-slate-400">{exam.questions.length} Questions</span>
               <button
                 onClick={() => startExam(exam)}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5"
+                className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5"
               >
                 <span>Take Exam Now</span>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

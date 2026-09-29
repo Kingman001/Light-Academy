@@ -68,7 +68,21 @@ export const App: React.FC = () => {
     setCurrentView('public');
   };
 
-  const handleGoToPortal = () => {
+  const handleGoToPortal = (targetRole?: 'STUDENT' | 'STAFF') => {
+    if (targetRole === 'STUDENT') {
+      if (!currentUser || currentUser.role !== UserRole.STUDENT) {
+        setCurrentUser(DEMO_STUDENT);
+      }
+      setCurrentView('student-portal');
+      return;
+    }
+    if (targetRole === 'STAFF') {
+      if (!currentUser || (currentUser.role !== UserRole.STAFF && currentUser.role !== UserRole.TEACHER)) {
+        setCurrentUser(DEMO_STAFF);
+      }
+      setCurrentView('staff-portal');
+      return;
+    }
     if (!currentUser) {
       handleOpenAuth('STUDENT');
       return;
@@ -175,53 +189,6 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
-      {/* Universal Floating Switcher Bar for Quick Evaluation */}
-      <aside aria-label="Portal Mode Switcher" className="fixed bottom-4 left-4 z-50 bg-slate-950/90 text-white px-3 py-2 rounded-2xl shadow-2xl border border-slate-700/80 backdrop-blur-md flex items-center gap-2 text-xs">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 hidden sm:inline">
-          View Mode:
-        </span>
-        <button
-          onClick={() => setCurrentView('public')}
-          className={`px-2.5 py-1 rounded-lg font-bold transition-all ${
-            currentView === 'public'
-              ? 'bg-amber-500 text-slate-950'
-              : 'hover:bg-slate-800 text-slate-300'
-          }`}
-        >
-          🌐 School CMS
-        </button>
-        <button
-          onClick={() => {
-            if (!currentUser || currentUser.role !== UserRole.STUDENT) {
-              setCurrentUser(DEMO_STUDENT);
-            }
-            setCurrentView('student-portal');
-          }}
-          className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 ${
-            currentView === 'student-portal'
-              ? 'bg-indigo-600 text-white'
-              : 'hover:bg-slate-800 text-slate-300'
-          }`}
-        >
-          <span>Pupil Portal</span>
-        </button>
-        <button
-          onClick={() => {
-            if (!currentUser || (currentUser.role !== UserRole.STAFF && currentUser.role !== UserRole.TEACHER)) {
-              setCurrentUser(DEMO_STAFF);
-            }
-            setCurrentView('staff-portal');
-          }}
-          className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 ${
-            currentView === 'staff-portal'
-              ? 'bg-emerald-600 text-white'
-              : 'hover:bg-slate-800 text-slate-300'
-          }`}
-        >
-          <span>Teacher Portal</span>
-        </button>
-      </aside>
-
       {/* VIEW 1: PUBLIC CMS SCHOOL WEBSITE */}
       {currentView === 'public' && (
         <div className="flex flex-col min-h-screen">
@@ -283,14 +250,14 @@ export const App: React.FC = () => {
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <span className="font-bold text-slate-900 font-serif">Lights Academy Pupil</span>
                   <span>/</span>
-                  <span className="capitalize text-indigo-700 font-bold">{activeStudentTab}</span>
+                  <span className="capitalize text-amber-800 font-bold">{activeStudentTab}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
                   {/* Public Site Button */}
                   <button
                     onClick={() => setCurrentView('public')}
-                    className="text-xs text-slate-600 hover:text-slate-900 font-semibold px-3 py-1.5 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
+                    className="text-xs text-slate-700 hover:text-slate-950 font-semibold px-3 py-1.5 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
                   >
                     🌐 School Website
                   </button>
@@ -298,9 +265,9 @@ export const App: React.FC = () => {
                   {/* Switch to Teacher Portal */}
                   <button
                     onClick={() => handleQuickSwitchTo('STAFF')}
-                    className="text-[11px] text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 font-bold px-2.5 py-1.5 rounded-lg transition-colors hidden md:block"
+                    className="text-[11px] text-slate-900 bg-amber-50 hover:bg-amber-100 border border-amber-300 font-bold px-2.5 py-1.5 rounded-lg transition-colors hidden md:block"
                   >
-                    Switch to Teacher View →
+                    Switch to Teacher Portal →
                   </button>
 
                   {/* Notifications */}
@@ -313,7 +280,7 @@ export const App: React.FC = () => {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                       </svg>
-                      <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full"></span>
+                      <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-amber-500 rounded-full"></span>
                     </button>
 
                     {showNotifications && (
@@ -328,9 +295,9 @@ export const App: React.FC = () => {
                               setActiveStudentTab('exams');
                               setShowNotifications(false);
                             }}
-                            className="p-2.5 rounded-xl bg-indigo-50/70 border border-indigo-100 cursor-pointer hover:bg-indigo-100/70 transition-colors"
+                            className="p-2.5 rounded-xl bg-amber-50/60 border border-amber-200 cursor-pointer hover:bg-amber-100/60 transition-colors"
                           >
-                            <span className="font-bold text-indigo-900 block">Mid-Term Mathematics Exam Live</span>
+                            <span className="font-bold text-amber-950 block">Mid-Term Mathematics Exam Live</span>
                             <span className="text-[11px] text-slate-600">Open for immediate submission. Click to take.</span>
                           </div>
                           <div 
@@ -338,9 +305,9 @@ export const App: React.FC = () => {
                               setActiveStudentTab('fees');
                               setShowNotifications(false);
                             }}
-                            className="p-2.5 rounded-xl bg-amber-50/70 border border-amber-100 cursor-pointer hover:bg-amber-100/70 transition-colors"
+                            className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors"
                           >
-                            <span className="font-bold text-amber-900 block">HPC Lab Fee Balance</span>
+                            <span className="font-bold text-slate-900 block">Science Lab Fee Balance</span>
                             <span className="text-[11px] text-slate-600">$140 due for examination clearance.</span>
                           </div>
                         </div>
@@ -351,7 +318,7 @@ export const App: React.FC = () => {
                   {/* Profile Avatar */}
                   <div
                     onClick={() => setActiveStudentTab('settings')}
-                    className="w-9 h-9 rounded-xl overflow-hidden border border-slate-200 cursor-pointer hover:ring-2 hover:ring-indigo-300 transition-all"
+                    className="w-9 h-9 rounded-xl overflow-hidden border border-slate-200 cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all"
                   >
                     <img
                       src={currentUser?.avatar || DEMO_STUDENT.avatar}

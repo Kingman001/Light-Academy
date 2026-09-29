@@ -76,7 +76,7 @@ export const CampusLifePage: React.FC<CampusLifePageProps> = ({ onOpenApply }) =
             </div>
             <div className="p-6 flex-1 flex flex-col justify-between space-y-3">
               <div>
-                <h3 className="text-base font-bold font-serif text-slate-900 group-hover:text-indigo-600 transition-colors">
+                <h3 className="text-base font-bold font-serif text-slate-900 group-hover:text-amber-800 transition-colors">
                   {fac.title}
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed mt-2">

@@ -64,22 +64,23 @@ export const HomePage: React.FC<HomePageProps> = ({
               </button>
             </div>
 
-            {/* Quick Portals Strip */}
-            <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-4 text-xs text-slate-400">
-              <span className="font-semibold text-slate-300">Quick School Portal Access:</span>
-              <button
-                onClick={() => onOpenAuth('STUDENT')}
-                className="text-amber-300 hover:text-amber-200 underline font-medium flex items-center gap-1"
-              >
-                Pupil Portal Sign In →
-              </button>
+            {/* Secondary Academic Credentials Strip */}
+            <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-4 text-xs text-slate-300">
+              <span className="font-semibold text-amber-400">Academic Highlights:</span>
+              <span className="flex items-center gap-1.5 text-slate-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                Cambridge & National Secondary Approved
+              </span>
               <span className="text-slate-700">•</span>
-              <button
-                onClick={() => onOpenAuth('STAFF')}
-                className="text-amber-300 hover:text-amber-200 underline font-medium flex items-center gap-1"
-              >
-                Teacher Portal Sign In →
-              </button>
+              <span className="flex items-center gap-1.5 text-slate-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                100% Certificate Pass Rate
+              </span>
+              <span className="text-slate-700">•</span>
+              <span className="flex items-center gap-1.5 text-slate-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                Four Historic Houses & Boarding
+              </span>
             </div>
           </div>
         </div>

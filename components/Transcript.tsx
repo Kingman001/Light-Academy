@@ -42,7 +42,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
       <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center font-serif font-black text-amber-400 text-lg">
+            <div className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center font-serif font-black text-amber-400 text-lg border border-amber-400/30">
               LA
             </div>
             <div>
@@ -52,7 +52,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
           </div>
 
           <div className="text-right">
-            <span className="text-[10px] uppercase font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+            <span className="text-[10px] uppercase font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
               Promotion Standing: Excellent
             </span>
           </div>
@@ -65,7 +65,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
           </div>
           <div>
             <span className="text-slate-400 block text-[10px] uppercase font-bold">Admission Number</span>
-            <span className="font-mono font-bold text-indigo-700">{currentUser.studentId || 'LA-2024-4920'}</span>
+            <span className="font-mono font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded">{currentUser.studentId || 'LA-2024-4920'}</span>
           </div>
           <div>
             <span className="text-slate-400 block text-[10px] uppercase font-bold">Class / Form</span>
@@ -73,7 +73,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
           </div>
           <div>
             <span className="text-slate-400 block text-[10px] uppercase font-bold">House Affiliation</span>
-            <span className="font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">{currentUser.house || 'Orion House'}</span>
+            <span className="font-bold text-amber-900 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">{currentUser.house || 'Orion House'}</span>
           </div>
         </div>
       </div>
@@ -82,8 +82,8 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Overall Average</span>
-          <div className="text-3xl font-black font-serif text-indigo-700 mt-1">{averagePercentage}%</div>
-          <p className="text-[11px] text-emerald-600 font-semibold mt-1">Distinction (Grade A*)</p>
+          <div className="text-3xl font-black font-serif text-slate-900 mt-1">{averagePercentage}%</div>
+          <p className="text-[11px] text-emerald-700 font-semibold mt-1">Distinction (Grade A*)</p>
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
@@ -100,7 +100,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
 
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Conduct & Character</span>
-          <div className="text-2xl font-black font-serif text-amber-700 mt-1">Exemplary</div>
+          <div className="text-2xl font-black font-serif text-amber-800 mt-1">Exemplary</div>
           <p className="text-[11px] text-slate-500 mt-1">Academic Prefect & Role Model</p>
         </div>
       </div>
@@ -108,7 +108,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
       {/* Subject Grades Table */}
       <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
         <div className="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">Subject Breakdown & Continuous Assessment</h3>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800">Subject Breakdown & Continuous Assessment</h3>
           <span className="text-xs text-slate-500 font-medium">CA (30%) + Terminal Exam (70%)</span>
         </div>
 
@@ -130,7 +130,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
               {MOCK_REPORT_CARD.map((item) => (
                 <tr key={item.id} className="hover:bg-slate-50/60 transition-colors">
                   <td className="p-4 font-bold text-slate-900">{item.subjectName}</td>
-                  <td className="p-4 font-mono font-bold text-indigo-700">{item.subjectCode}</td>
+                  <td className="p-4 font-mono font-bold text-slate-700">{item.subjectCode}</td>
                   <td className="p-4 text-slate-500">{item.classAverage}%</td>
                   <td className="p-4 font-semibold text-slate-700">{item.caScore}</td>
                   <td className="p-4 font-semibold text-slate-700">{item.examScore}</td>
@@ -138,7 +138,7 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
                   <td className="p-4">
                     <span className={`px-2 py-0.5 rounded font-bold text-xs ${
                       item.letterGrade === 'A*' ? 'bg-emerald-100 text-emerald-800' :
-                      item.letterGrade === 'A' ? 'bg-blue-100 text-blue-800' :
+                      item.letterGrade === 'A' ? 'bg-amber-100 text-amber-900' :
                       'bg-slate-100 text-slate-800'
                     }`}>
                       {item.letterGrade}
@@ -154,13 +154,13 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
         {/* Remarks Section */}
         <div className="p-6 bg-slate-50 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
           <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-1">
-            <span className="text-[10px] font-bold uppercase text-slate-400">Form Master’s General Remark (Mr. David Miller):</span>
+            <span className="text-[10px] font-bold uppercase text-slate-500">Form Master’s General Remark (Mr. David Miller):</span>
             <p className="font-medium text-slate-800 leading-relaxed">
               "Alex has demonstrated exceptional maturity, academic focus, and leadership as Academic Prefect. His mathematics and science performance is outstanding. Keep up the high standard!"
             </p>
           </div>
           <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-1">
-            <span className="text-[10px] font-bold uppercase text-slate-400">Principal’s Endorsement (Dr. Arthur Sterling):</span>
+            <span className="text-[10px] font-bold uppercase text-slate-500">Principal’s Endorsement (Dr. Arthur Sterling):</span>
             <p className="font-medium text-slate-800 leading-relaxed">
               "A truly commendable terminal result. Alex is a credit to Lights Academy and Orion House. Promoted with High Academic Honors."
             </p>
@@ -170,3 +170,5 @@ export const Transcript: React.FC<TranscriptProps> = ({ currentUser }) => {
     </div>
   );
 };
+
+export default Transcript;

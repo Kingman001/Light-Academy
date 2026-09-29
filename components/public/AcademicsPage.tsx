@@ -21,7 +21,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
+        <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-300">
           Secondary School Curricula
         </span>
         <h1 className="text-4xl sm:text-5xl font-black font-serif text-slate-950 tracking-tight">
@@ -45,10 +45,10 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {SECONDARY_CLASS_LEVELS.map((lvl) => (
-            <div key={lvl.id} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 flex flex-col justify-between">
+            <div key={lvl.id} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 flex flex-col justify-between hover:border-amber-400 transition-all">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded border border-indigo-200/60">
+                  <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-300">
                     {lvl.division}
                   </span>
                   <span className="text-xs font-medium text-slate-400">{lvl.ageGroup}</span>
@@ -71,7 +71,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
                 <span className="text-slate-500 font-medium">Track: {lvl.track}</span>
                 <button
                   onClick={onOpenApply}
-                  className="font-bold text-indigo-600 hover:text-indigo-800"
+                  className="font-bold text-amber-800 hover:text-amber-900"
                 >
                   Enrollment Info →
                 </button>
@@ -99,7 +99,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
               placeholder="Search subjects (e.g. Physics, French)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="px-3.5 py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600 w-56 sm:w-64"
+              className="px-3.5 py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 w-56 sm:w-64"
             />
             {selectedDept !== 'all' && (
               <button
@@ -116,11 +116,11 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
           {filteredDepts.map((dept) => (
             <div
               key={dept.id}
-              className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 space-y-4 flex flex-col justify-between"
+              className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 space-y-4 flex flex-col justify-between hover:border-amber-400 transition-all"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60 font-mono">
+                  <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-300 font-mono">
                     {dept.code}
                   </span>
                   <span className="text-xs text-slate-400 font-medium">{dept.subjects.length} Subjects</span>
@@ -144,7 +144,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
                 <span className="text-slate-400 truncate">HOD: {dept.headOfDepartment}</span>
                 <button
                   onClick={onOpenApply}
-                  className="font-bold text-indigo-600 hover:text-indigo-800"
+                  className="font-bold text-amber-800 hover:text-amber-900"
                 >
                   Apply →
                 </button>
@@ -155,7 +155,7 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
       </div>
 
       {/* Secondary School Term Calendar 2026/2027 */}
-      <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 space-y-6">
+      <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 space-y-6 border border-slate-800">
         <div className="space-y-1">
           <span className="text-xs font-bold uppercase tracking-wider text-amber-400">School Calendar</span>
           <h2 className="text-2xl font-bold font-serif tracking-tight">Academic Year 2026/2027 Term Dates</h2>
@@ -185,3 +185,5 @@ export const AcademicsPage: React.FC<AcademicsPageProps> = ({ onOpenApply }) => 
     </div>
   );
 };
+
+export default AcademicsPage;

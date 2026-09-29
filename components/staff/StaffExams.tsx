@@ -87,7 +87,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
 
         <button
           onClick={() => setIsCreating(!isCreating)}
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5"
+          className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -98,7 +98,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
 
       {/* Authoring Form Modal/Panel */}
       {isCreating && (
-        <form onSubmit={handleSaveExam} className="bg-white p-6 sm:p-8 rounded-2xl border border-indigo-200 shadow-md space-y-6 animate-in slide-in-from-top-2">
+        <form onSubmit={handleSaveExam} className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-300 shadow-md space-y-6 animate-in slide-in-from-top-2">
           <div className="border-b border-slate-100 pb-3">
             <h3 className="text-lg font-bold font-serif text-slate-900">
               Author Class Quiz or Term Test
@@ -117,7 +117,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="e.g. Grade 11 Chemistry Periodic Table Test"
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900"
               />
             </div>
             <div>
@@ -125,7 +125,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
               <select
                 value={newSubject}
                 onChange={(e) => setNewSubject(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900"
               >
                 <option value="Senior Mathematics">Senior Mathematics</option>
                 <option value="Physics">Physics & Mechanics</option>
@@ -140,7 +140,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
               <select
                 value={newGradeLevel}
                 onChange={(e) => setNewGradeLevel(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900"
               >
                 <option value="Grade 11">Grade 11 (Form 5)</option>
                 <option value="Grade 10">Grade 10 (Form 4)</option>
@@ -158,7 +158,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
                 max="120"
                 value={newDuration}
                 onChange={(e) => setNewDuration(parseInt(e.target.value) || 30)}
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900"
               />
             </div>
             <div>
@@ -169,7 +169,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
                 max="100"
                 value={newTotalMarks}
                 onChange={(e) => setNewTotalMarks(parseInt(e.target.value) || 50)}
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900"
               />
             </div>
             <div>
@@ -178,7 +178,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
                 type="text"
                 value={newTerm}
                 onChange={(e) => setNewTerm(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900"
               />
             </div>
           </div>
@@ -217,7 +217,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
                 placeholder="Question prompt (e.g. Which of the following is a primary consumer in an ecosystem?)"
                 value={currentQText}
                 onChange={(e) => setCurrentQText(e.target.value)}
-                className="w-full px-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-600"
+                className="w-full px-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-900"
               />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -267,7 +267,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
                 <button
                   type="button"
                   onClick={addQuestionToNewExam}
-                  className="ml-auto px-3 py-1 bg-slate-800 text-white rounded-lg text-xs font-semibold hover:bg-slate-700"
+                  className="ml-auto px-3 py-1 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800"
                 >
                   + Add Question
                 </button>
@@ -285,7 +285,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-sm"
+              className="px-6 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow-sm transition-all"
             >
               Publish to Class Portal
             </button>
@@ -298,14 +298,14 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
         {exams.map((exam) => (
           <div
             key={exam.id}
-            className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4 hover:border-slate-300 transition-all"
+            className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4 hover:border-amber-400 transition-all"
           >
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
                   {exam.gradeLevel || 'Grade 11'}
                 </span>
-                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                   {exam.status || 'ACTIVE'}
                 </span>
               </div>
@@ -329,7 +329,7 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
               <span className="text-slate-400">{exam.questions.length} Questions</span>
               <button
                 onClick={() => alert(`Assessment "${exam.title}" has ${exam.questions.length} questions. Automated scoring active.`)}
-                className="font-bold text-indigo-600 hover:text-indigo-800"
+                className="font-bold text-slate-900 hover:text-amber-800"
               >
                 Inspect Quiz →
               </button>
@@ -340,3 +340,5 @@ export const StaffExams: React.FC<StaffExamsProps> = ({ exams, setExams }) => {
     </div>
   );
 };
+
+export default StaffExams;

@@ -118,7 +118,7 @@ export const AdmissionsPage: React.FC<AdmissionsPageProps> = ({ onOpenAuth }) =>
               </p>
               
               <div className="p-4 bg-white rounded-xl border border-emerald-200 inline-block text-left text-xs space-y-1">
-                <p><strong>Candidate Application No:</strong> <span className="font-mono text-indigo-700 font-bold">{submittedApp.applicationNumber}</span></p>
+                <p><strong>Candidate Application No:</strong> <span className="font-mono text-slate-900 font-bold">{submittedApp.applicationNumber}</span></p>
                 <p><strong>Applying For:</strong> {submittedApp.targetGrade} ({submittedApp.boardingPreference})</p>
                 <p><strong>Submission Date:</strong> {submittedApp.submissionDate}</p>
                 <p><strong>Status:</strong> <span className="text-emerald-700 font-bold">Entrance Exam Scheduled</span></p>
@@ -321,7 +321,7 @@ export const AdmissionsPage: React.FC<AdmissionsPageProps> = ({ onOpenAuth }) =>
             </div>
 
             <div className="pt-2 text-[11px] text-slate-400">
-              Parents can pay online via the integrated <strong className="text-slate-600">Student Portal Fee Payment</strong> gateway.
+              Parents can pay online via the integrated <strong className="text-slate-800">Pupil Portal Fee Payment</strong> gateway.
             </div>
           </div>
         </div>

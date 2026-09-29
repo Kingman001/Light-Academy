@@ -27,10 +27,10 @@ export const Dashboard: React.FC = () => {
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">
+            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-900 text-white">
               Grade 11A · Senior Secondary
             </span>
-            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300/80">
               {DEMO_STUDENT.house}
             </span>
           </div>
@@ -38,26 +38,26 @@ export const Dashboard: React.FC = () => {
             Welcome back, {DEMO_STUDENT.name}!
           </h2>
           <p className="text-xs text-slate-500">
-            Term 1 (Michaelmas) Academic Progress & Continuous Assessment
+            Term 1 (Michaelmas) Continuous Assessment & Academic Performance Overview
           </p>
         </div>
 
         <div className="text-right sm:border-l sm:border-slate-200 sm:pl-4">
-          <span className="text-[10px] text-slate-400 font-bold uppercase block">Term Status</span>
-          <span className="text-sm font-bold text-emerald-700 font-serif">Academic Prefect · Merit Standing</span>
+          <span className="text-[10px] text-slate-400 font-bold uppercase block">Term Standing</span>
+          <span className="text-sm font-bold text-slate-900 font-serif">Academic Prefect · Merit Standing</span>
         </div>
       </header>
 
-      {/* Stats Grid */}
+      {/* Stats Grid with Uniform Palette */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Term Attendance', value: '97%', sub: '68 of 70 days present', color: 'bg-emerald-500' },
-          { label: 'Cumulative Average', value: '91.4%', sub: 'Top 5% in Form 11A', color: 'bg-indigo-600' },
-          { label: 'Weekly Homework', value: '3 Active', sub: 'Maths HW due Friday', color: 'bg-amber-500' },
-          { label: 'Library Textbooks', value: '2 Borrowed', sub: 'Cambridge Physics & Bio', color: 'bg-rose-500' },
+          { label: 'Term Attendance', value: '97%', sub: '68 of 70 days present', bg: 'bg-slate-900', badgeColor: 'text-emerald-700' },
+          { label: 'Cumulative Average', value: '91.4%', sub: 'Top 5% in Form 11A', bg: 'bg-amber-500', badgeColor: 'text-amber-800' },
+          { label: 'Weekly Homework', value: '3 Active', sub: 'Maths HW due Friday', bg: 'bg-slate-800', badgeColor: 'text-slate-700' },
+          { label: 'Library Textbooks', value: '2 Borrowed', sub: 'Cambridge Physics & Bio', bg: 'bg-amber-600', badgeColor: 'text-amber-800' },
         ].map((stat, i) => (
           <div key={i} className="bg-white p-5 rounded-2xl shadow-xs border border-slate-200/80">
-            <div className={`w-9 h-9 ${stat.color} rounded-xl mb-3 flex items-center justify-center text-white`}>
+            <div className={`w-9 h-9 ${stat.bg} rounded-xl mb-3 flex items-center justify-center text-white`}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
@@ -70,7 +70,7 @@ export const Dashboard: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Performance Chart */}
+        {/* Performance Chart with Uniform Navy & Gold theme */}
         <div className="lg:col-span-2 bg-white p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
           <div className="flex items-center justify-between">
             <div>
@@ -88,39 +88,39 @@ export const Dashboard: React.FC = () => {
               <AreaChart data={termPerformanceData}>
                 <defs>
                   <linearGradient id="colorScoreSec" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.15}/>
-                    <stop offset="95%" stopColor="#4f46e5" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.25}/>
+                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} domain={[60, 100]} />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 11}} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 11}} domain={[60, 100]} />
                 <Tooltip 
                   contentStyle={{ borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.05)' }}
                 />
-                <Area type="monotone" dataKey="score" stroke="#4f46e5" strokeWidth={2.5} fillOpacity={1} fill="url(#colorScoreSec)" />
+                <Area type="monotone" dataKey="score" stroke="#d97706" strokeWidth={2.5} fillOpacity={1} fill="url(#colorScoreSec)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* AI Secondary Study Tutor */}
-        <div className="bg-slate-900 text-white p-6 rounded-3xl shadow-lg flex flex-col justify-between space-y-4">
+        <div className="bg-slate-900 text-white p-6 rounded-3xl shadow-lg flex flex-col justify-between space-y-4 border border-slate-800">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 bg-indigo-500 rounded-xl flex items-center justify-center font-bold text-white shadow-sm">
+              <div className="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center font-bold text-slate-950 shadow-sm font-serif">
                 AI
               </div>
               <div>
-                <h3 className="font-bold text-sm font-serif">Secondary Study Mentor</h3>
+                <h3 className="font-bold text-sm font-serif text-white">Secondary Study Mentor</h3>
                 <p className="text-slate-400 text-[11px]">Personalized revision guidance</p>
               </div>
             </div>
             
-            <div className="overflow-y-auto bg-slate-800/60 rounded-xl p-3.5 text-xs leading-relaxed max-h-48 border border-slate-700/60">
+            <div className="overflow-y-auto bg-slate-800/70 rounded-xl p-3.5 text-xs leading-relaxed max-h-48 border border-slate-700/60">
               {loadingInsight ? (
                 <div className="flex flex-col items-center justify-center py-6 gap-2">
-                  <div className="w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
                   <p className="text-slate-400 text-xs">Analyzing homework & test trends...</p>
                 </div>
               ) : insight ? (
@@ -136,7 +136,7 @@ export const Dashboard: React.FC = () => {
           <button 
             onClick={fetchInsight}
             disabled={loadingInsight}
-            className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 transition-colors rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs"
+            className="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 transition-colors rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -150,12 +150,12 @@ export const Dashboard: React.FC = () => {
       <div className="bg-white p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
           <h3 className="font-bold text-slate-900 font-serif text-base flex items-center gap-2">
-            <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             Secondary School Notices & Circulars
           </h3>
-          <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-full uppercase">
+          <span className="text-[10px] font-bold text-slate-900 bg-amber-100 px-2.5 py-0.5 rounded-full uppercase border border-amber-300">
             {MOCK_NOTIFICATIONS.length} Active Circulars
           </span>
         </div>
@@ -165,13 +165,13 @@ export const Dashboard: React.FC = () => {
             <div 
               key={notif.id} 
               className={`p-4 rounded-2xl border flex gap-3 transition-all ${
-                notif.isUrgent ? 'bg-rose-50/30 border-rose-200' : 'bg-slate-50/50 border-slate-200/80'
+                notif.isUrgent ? 'bg-rose-50/40 border-rose-200' : 'bg-slate-50/60 border-slate-200/80'
               }`}
             >
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                notif.type === 'EXAM' ? 'bg-indigo-100 text-indigo-600' : 
-                notif.type === 'FEE' ? 'bg-amber-100 text-amber-700' :
-                notif.type === 'HOUSE' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-200 text-slate-700'
+                notif.type === 'EXAM' ? 'bg-amber-100 text-amber-800' : 
+                notif.type === 'FEE' ? 'bg-slate-200 text-slate-800' :
+                notif.type === 'HOUSE' ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-slate-200 text-slate-700'
               }`}>
                 {notif.type === 'EXAM' && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>}
                 {notif.type === 'FEE' && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}

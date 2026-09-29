@@ -30,7 +30,7 @@ export const ContactPage: React.FC = () => {
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
+        <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-300">
           Secondary School Administration
         </span>
         <h1 className="text-4xl sm:text-5xl font-black font-serif text-slate-950 tracking-tight">
