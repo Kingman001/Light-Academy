@@ -10,7 +10,7 @@ const Subjects: React.FC = () => {
   const filteredSubjects = useMemo(() => {
     let result = MOCK_SUBJECTS.filter((subject) =>
       subject.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (subject.teacher || subject.lecturer).toLowerCase().includes(searchQuery.toLowerCase()) ||
+      subject.teacher.toLowerCase().includes(searchQuery.toLowerCase()) ||
       subject.code.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -26,7 +26,7 @@ const Subjects: React.FC = () => {
 
   const handleDownloadSyllabus = () => {
     const content = "Lights Academy Secondary School - Academic Session 2026/2027\nPrescribed Secondary Subjects & Term 1 Syllabus:\n" + 
-      MOCK_SUBJECTS.map(s => `- ${s.name} (${s.code}) - Subject Master: ${s.teacher || s.lecturer}`).join('\n');
+      MOCK_SUBJECTS.map(s => `- ${s.name} (${s.code}) - Subject Master: ${s.teacher}`).join('\n');
     const blob = new Blob([content], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');

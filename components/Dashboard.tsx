@@ -17,9 +17,14 @@ export const Dashboard: React.FC = () => {
 
   const fetchInsight = async () => {
     setLoadingInsight(true);
-    const res = await getAIPerformanceInsight(termPerformanceData);
-    setInsight(res);
-    setLoadingInsight(false);
+    try {
+      const res = await getAIPerformanceInsight(termPerformanceData);
+      setInsight(res);
+    } catch (error) {
+      setInsight(error instanceof Error ? error.message : 'Study guidance is unavailable. Please contact the school.');
+    } finally {
+      setLoadingInsight(false);
+    }
   };
 
   return (
@@ -127,7 +132,7 @@ export const Dashboard: React.FC = () => {
                 <p className="whitespace-pre-line text-slate-200">{insight}</p>
               ) : (
                 <p className="text-slate-400 italic">
-                  Click below to generate personalized homework recommendations, revision strategies, and secondary examination tips.
+                  Study guidance is unavailable until the school connects a protected backend. This demo does not send student information to an AI provider.
                 </p>
               )}
             </div>
@@ -141,7 +146,7 @@ export const Dashboard: React.FC = () => {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-            {insight ? 'Refresh Study Guidance' : 'Generate Study Guidance'}
+            {insight ? 'Check Study Guidance' : 'Study Guidance Status'}
           </button>
         </div>
       </div>

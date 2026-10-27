@@ -6,11 +6,11 @@ export const NewsPage: React.FC = () => {
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const categories = ['All', 'Academics', 'Sports & Houses', 'Campus Life', 'Admissions'];
+  const categories = ['All', ...new Set(NEWS_ARTICLES.map(article => article.category))];
 
   const filteredArticles = selectedCategory === 'All'
     ? NEWS_ARTICLES
-    : NEWS_ARTICLES.filter(a => a.category === selectedCategory || (selectedCategory === 'Sports & Houses' && (a.category === 'Research' || a.category === 'Sports')));
+    : NEWS_ARTICLES.filter(a => a.category === selectedCategory);
 
   return (
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">

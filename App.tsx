@@ -1,39 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { User, UserRole, EnrolledStudent, Exam } from './types';
 import { getStoredUser, logoutUser } from './services/authService';
 import { MOCK_ENROLLED_STUDENTS, MOCK_EXAMS, DEMO_STUDENT, DEMO_STAFF } from './constants';
 
 // Public Components
-import { PublicNavbar } from './components/public/PublicNavbar';
-import { PublicFooter } from './components/public/PublicFooter';
-import { HomePage } from './components/public/HomePage';
-import { AboutPage } from './components/public/AboutPage';
-import { AcademicsPage } from './components/public/AcademicsPage';
-import { AdmissionsPage } from './components/public/AdmissionsPage';
-import { CampusLifePage } from './components/public/CampusLifePage';
-import { NewsPage } from './components/public/NewsPage';
-import { ContactPage } from './components/public/ContactPage';
+import { PublicSite } from './components/public/PublicSite';
 
-// Auth Component
-import { AuthModal } from './components/auth/AuthModal';
-
-// Student Portal Components
-import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import Timetable from './components/Timetable';
-import ExamList from './components/ExamList';
-import FeePayment from './components/FeePayment';
-import Subjects from './components/Subjects';
-import Settings from './components/Settings';
-import { Transcript } from './components/Transcript';
-
-// Staff Portal Component
-import { StaffPortal } from './components/staff/StaffPortal';
+const AuthModal = lazy(() => import('./components/auth/AuthModal').then(module => ({ default: module.AuthModal })));
+const Sidebar = lazy(() => import('./components/Sidebar'));
+const Dashboard = lazy(() => import('./components/Dashboard'));
+const Timetable = lazy(() => import('./components/Timetable'));
+const ExamList = lazy(() => import('./components/ExamList'));
+const FeePayment = lazy(() => import('./components/FeePayment'));
+const Subjects = lazy(() => import('./components/Subjects'));
+const Settings = lazy(() => import('./components/Settings'));
+const Transcript = lazy(() => import('./components/Transcript').then(module => ({ default: module.Transcript })));
+const StaffPortal = lazy(() => import('./components/staff/StaffPortal').then(module => ({ default: module.StaffPortal })));
 
 export const App: React.FC = () => {
   // Current high-level view: 'public' | 'student-portal' | 'staff-portal'
   const [currentView, setCurrentView] = useState<'public' | 'student-portal' | 'staff-portal'>('public');
-  const [currentPublicPage, setCurrentPublicPage] = useState<string>('home');
   const [activeStudentTab, setActiveStudentTab] = useState<string>('dashboard');
   
   // Auth state
@@ -126,97 +112,16 @@ export const App: React.FC = () => {
     }
   };
 
-  const renderPublicContent = () => {
-    switch (currentPublicPage) {
-      case 'home':
-        return (
-          <HomePage
-            setCurrentPublicPage={setCurrentPublicPage}
-            onOpenAuth={handleOpenAuth}
-            onOpenApply={() => {
-              setCurrentPublicPage('admissions');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        );
-      case 'about':
-        return (
-          <AboutPage
-            setCurrentPublicPage={setCurrentPublicPage}
-            onOpenApply={() => {
-              setCurrentPublicPage('admissions');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        );
-      case 'academics':
-        return (
-          <AcademicsPage
-            onOpenApply={() => {
-              setCurrentPublicPage('admissions');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        );
-      case 'admissions':
-        return <AdmissionsPage onOpenAuth={handleOpenAuth} />;
-      case 'campus':
-        return (
-          <CampusLifePage
-            onOpenApply={() => {
-              setCurrentPublicPage('admissions');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        );
-      case 'news':
-        return <NewsPage />;
-      case 'contact':
-        return <ContactPage />;
-      default:
-        return (
-          <HomePage
-            setCurrentPublicPage={setCurrentPublicPage}
-            onOpenAuth={handleOpenAuth}
-            onOpenApply={() => {
-              setCurrentPublicPage('admissions');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        );
-    }
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {/* VIEW 1: PUBLIC CMS SCHOOL WEBSITE */}
       {currentView === 'public' && (
-        <div className="flex flex-col min-h-screen">
-          <PublicNavbar
-            currentPublicPage={currentPublicPage}
-            setCurrentPublicPage={setCurrentPublicPage}
-            currentUser={currentUser}
-            onOpenAuth={handleOpenAuth}
-            onGoToPortal={handleGoToPortal}
-            onOpenApply={() => {
-              setCurrentPublicPage('admissions');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-
-          <main className="flex-1">
-            {renderPublicContent()}
-          </main>
-
-          <PublicFooter
-            setCurrentPublicPage={setCurrentPublicPage}
-            onOpenAuth={handleOpenAuth}
-          />
-        </div>
+        <PublicSite onOpenAuth={handleOpenAuth} onGoToPortal={handleGoToPortal} />
       )}
 
       {/* VIEW 2: STAFF & FACULTY PORTAL */}
       {currentView === 'staff-portal' && (
+        <Suspense fallback={<div className="portal-loading" role="status">Loading the staff portal…</div>}>
         <StaffPortal
           currentUser={currentUser || DEMO_STAFF}
           onLogout={handleLogout}
@@ -227,10 +132,12 @@ export const App: React.FC = () => {
           exams={exams}
           setExams={setExams}
         />
+        </Suspense>
       )}
 
       {/* VIEW 3: STUDENT PORTAL */}
       {currentView === 'student-portal' && (
+        <Suspense fallback={<div className="portal-loading" role="status">Loading the student portal…</div>}>
         <div className="min-h-screen bg-slate-100/70 flex">
           {/* Sidebar Navigation */}
           <Sidebar
@@ -336,15 +243,16 @@ export const App: React.FC = () => {
             </div>
           </main>
         </div>
+        </Suspense>
       )}
 
       {/* Global Authentication Modal */}
-      <AuthModal
+      <Suspense fallback={null}><AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         initialRole={authModalRole}
         onLoginSuccess={handleLoginSuccess}
-      />
+      /></Suspense>
     </div>
   );
 };

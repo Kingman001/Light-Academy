@@ -1,8 +1,6 @@
 {
-  "name": "Lights Versity - School Management System",
-  "description": "A comprehensive school management platform for Lights Versity featuring online exams, automated fee payments, lecture timetables, and AI-powered performance insights.",
-  "requestFramePermissions": [
-    "camera"
-  ],
+  "name": "Lights Academy School Website",
+  "description": "A configurable school website template with public information pages and demonstration admissions and contact forms.",
+  "requestFramePermissions": [],
   "majorCapabilities": []
 }
